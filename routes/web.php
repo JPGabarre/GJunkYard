@@ -1,0 +1,52 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/','HomeController@getHome');
+
+/* Rutes per administrar el inventari */
+Route::get('/inventari','InventariController@getInventari')->middleware('auth');
+
+Route::get('/inventari/show/{id}','InventariController@getVehicle')->middleware('auth');
+
+Route::get('/inventari/create','InventariController@getCreateVehicle')->middleware('auth');
+
+Route::get('/inventari/edit/{id}','InventariController@getEditVehicle')->middleware('auth');
+
+/* Rutes per administrar les tasques*/
+Route::get('/treballs','TreballsController@getTreballs')->middleware('auth');
+
+Route::get('/treballs/show/{id}','TreballsController@getTreball')->middleware('auth');
+
+Route::get('/treballs/create','TreballsController@getCreateTreball')->middleware('auth');
+
+Route::get('/treballs/edit/{id}','TreballsController@getEditTreball')->middleware('auth');
+
+/* Rutes per administrar usuaris (només podra accedir el admin) */
+Route::get('/users','UsersController@getUsers')->middleware('auth');
+
+Route::get('/users/show/{id}','UsersController@getUser')->middleware('auth');
+
+Route::get('/users/create','UsersController@getCreateUser')->middleware('auth');
+
+Route::get('/users/edit/{id}','UsersController@getEditUsers')->middleware('auth');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
