@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vehicle;
+use App\Tipus_vehicle;
 
 class InventariController extends Controller
 {
@@ -18,7 +19,9 @@ class InventariController extends Controller
     }
 
     public function getCreateVehicle(){
-        return view('inventari.create');
+        $tipus_vehicle = Tipus_vehicle::all();
+
+        return view('inventari.create',array('arrayTipus_vehicles'=>$tipus_vehicle));
     }
 
     public function getEditVehicle($id){

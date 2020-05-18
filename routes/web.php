@@ -33,6 +33,12 @@ Route::get('/treballs/create','TreballsController@getCreateTreball')->middleware
 
 Route::get('/treballs/edit/{id}','TreballsController@getEditTreball')->middleware('auth');
 
+Route::post('/treballs/create','TreballsController@postCreateTreball')->middleware('auth');
+
+Route::put('/treballs/edit/{id}','TreballsController@putEditTreball')->middleware('auth');
+
+Route::put('/treballs/delete/{id}','TreballsController@deleteTreball')->middleware('auth');
+
 /* Rutes per administrar usuaris (només podra accedir el admin) */
 Route::get('/users','UsersController@getUsers')->middleware('auth');
 
@@ -40,7 +46,13 @@ Route::get('/users/show/{id}','UsersController@getUser')->middleware('auth');
 
 Route::get('/users/create','UsersController@getCreateUser')->middleware('auth');
 
-Route::get('/users/edit/{id}','UsersController@getEditUsers')->middleware('auth');
+Route::get('/users/edit/{id}','UsersController@getEditUser')->middleware('auth');
+
+Route::post('/users/create','UsersController@postCreateUser')->middleware('auth');
+
+Route::put('/users/edit/{id}','UsersController@putEditUser')->middleware('auth');
+
+Route::put('/users/delete/{id}','UsersController@deleteUser')->middleware('auth');
 
 
 Auth::routes();

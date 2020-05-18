@@ -9,7 +9,7 @@
             </div>
             @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2)
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{url('/treball/create')}}"> Nou Treball</a>
+                    <a class="btn btn-success" href="{{url('/treballs/create')}}"> Nou Treball</a>
                 </div>
             @endif
         </div>
@@ -35,11 +35,11 @@
                                 <td><a class="btn" href="{{ url('/treballs/show/'.$treball->id) }}">{{ $treball->resum}}</a></td>
                                 <td>
                                 @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2)
-                                    <form action="" method="POST" style="display:inline; float:right; margin-right:5px;">
-                                        {{ method_field('DELETE') }}
+                                    <form action="{{action('TreballsController@deleteTreball', $treball->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
+                                        {{ method_field('PUT') }}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-danger" style="display:inline">
-                                            X
+                                            Eliminar
                                         </button>
                                     </form>
                                 @endif
@@ -56,11 +56,11 @@
                                 <td><a class="btn" href="{{ url('/treballs/show/'.$treball->id) }}">{{ $treball->resum}}</a></td>
                                 <td>
                                 @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2)
-                                    <form action="" method="POST" style="display:inline; float:right; margin-right:5px;">
-                                        {{ method_field('DELETE') }}
+                                    <form action="{{action('TreballsController@deleteTreball', $treball->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
+                                        {{ method_field('PUT') }}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-danger" style="display:inline">
-                                            X
+                                            Eliminar
                                         </button>
                                     </form>
                                 @endif
@@ -91,8 +91,8 @@
         <td>
             <a class="btn btn-info" href="{{ url('/treballs/show/'.$treball->id) }}">Mostrar</a>
             <a class="btn btn-primary" href="{{ url('/treballs/edit/'.$treball->id) }}">Editar</a>
-            <form action="" method="POST" style="display:inline; float:right; margin-right:5px;">
-                    {{ method_field('DELETE') }}
+            <form action="{{action('TreballsController@deleteTreball', $treball->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    {{ method_field('PUT') }}
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-danger" style="display:inline">
                         Eliminar
