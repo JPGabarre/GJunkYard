@@ -15,7 +15,9 @@ class UsersController extends Controller
     }
 
     public function getUser($id){
-        return view('users.show', array('id'=>$id));
+        $user = User::findOrFail($id);
+
+        return view('users.show', array('user'=>$user));
     }
 
     public function getCreateUser(){

@@ -17,8 +17,9 @@ class TreballsController extends Controller
     }
 
     public function getTreball($id){
+        $treball = Treball::findOrFail($id);
 
-        return view('treballs.show', array('id'=>$id));
+        return view('treballs.show', array('treball'=>$treball));
     }
 
     /*

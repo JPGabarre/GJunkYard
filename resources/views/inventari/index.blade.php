@@ -36,8 +36,8 @@
         <td>
             <a class="btn btn-info" href="{{ url('/inventari/show/'.$vehicle->id) }}">Mostrar</a>
             <a class="btn btn-primary" href="{{ url('/inventari/edit/'.$vehicle->id) }}">Editar</a>
-            <form action="" method="POST" style="display:inline; float:right; margin-right:5px;">
-                    {{ method_field('DELETE') }}
+            <form action="{{action('InventariController@deleteVehicle', $vehicle->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    {{ method_field('PUT') }}
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-danger" style="display:inline">
                         Eliminar

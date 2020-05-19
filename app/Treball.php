@@ -9,10 +9,11 @@ use App\Tipus_treball;
 class Treball extends Model
 {
     public function rols(){
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(Rol::class,'id_rol');
     }
 
     public function tipus_treball(){
         return $this->belongsTo(Tipus_treball::class,'id_tipus_treball');
     }
+    
 }
