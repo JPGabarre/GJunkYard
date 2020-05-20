@@ -21,14 +21,44 @@
         <h4><b>Marca: </b> {{$vehicle->tipus_vehicle->marca}} <b>Model: </b> {{$vehicle->tipus_vehicle->model}} </h4>
         <h4><b>Numero Bastidor: </b> {{$vehicle->bastidor}}</h4>
         <h4><b>Combustible: </b> {{$vehicle->combustible}} <b>Portes: </b> {{$vehicle->portes}} <b>Places: </b> {{$vehicle->places}} </h4>
-        <h4> Peces del vehicle </h4>
-        <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. 
-        Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-        cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y 
-        los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, 
-        sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. 
-        Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, 
-        y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+        <br>
+        <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h3> Peces del vehicle </h3>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ url('/inventari/create/'.$vehicle->id.'/peces') }}">Afegir Peces</a>
+            </div>
+        </div>
+        </div>
+        <table class="table" style="text-align:center">
+            <tr>
+                <th style="text-align:center">Nom</th>
+                <th style="text-align:center">Numero de Referencia</th> 
+                <th style="text-align:center">Stock</th>
+                <th style="text-align:center">Preu</th>
+                <th style="padding-left:110px; width:280px;">Accions</th>
+            </tr>
+            @foreach($arrayPeces as $pece)
+            <tr>
+                <td>{{ $pece->nom}}</td>
+                <td>{{ $pece->referencia}}</td>
+                <td>{{ $pece->quantitat}}</td>
+                <td>{{ $pece->preu}}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ url('/peces/edit/'.$pece->id) }}" style="margin-right:5px">Editar</a>
+                    <form action="{{action('InventariController@deletePece', $pece->id)}}" method="POST" style="display:inline; margin-right:5px;">
+                            {{ method_field('PUT') }}
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger" style="display:inline">
+                                Eliminar
+                            </button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </div>
     
     

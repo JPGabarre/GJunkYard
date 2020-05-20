@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vehicle;
 use App\Tipus_vehicle;
+use App\Pece;
 
 class InventariController extends Controller
 {
@@ -16,8 +17,10 @@ class InventariController extends Controller
 
     public function getVehicle($id){
         $vehicle = Vehicle::findOrFail($id);
+        
+        $arrayPeces = Pece::where('id_vehicle',$id)->get();
 
-        return view('inventari.show', array('vehicle'=>$vehicle));
+        return view('inventari.show', array('vehicle'=>$vehicle), array('arrayPeces'=>$arrayPeces));
     }
 
     public function getCreateVehicle(){
@@ -58,7 +61,7 @@ class InventariController extends Controller
             $v->portes = $portes;
             $v->places = $places;
             $v->any_matriculacio = $any_matriculacio;
-            $v->id_tipus_vehicle = $tipus_vehicle->id;
+            $v->id_tipus_vehicle = $tipus_vehicle[0]->id;
             $v->save();
         }else{
             //Es creara un vehicle i el id del tipus vehicle serà el del select
@@ -72,7 +75,9 @@ class InventariController extends Controller
             $v->save();
         }
 
-        return redirect('/inventari');
+        $vehicle = Vehicle::where('bastidor',$bastidor)->get();
+
+        return view('peces.opcions',array('vehicle'=>$vehicle[0]));
     }
 
     public function getEditVehicle($id){
@@ -133,5 +138,91 @@ class InventariController extends Controller
         $o->delete();
 
         return redirect('/inventari');
+    }
+
+    public function getCreatePece($id){
+        return view('peces.create',array('id'=>$id));
+    }
+
+    public function CreatePece($arrayInputs,$id){
+
+        //Variable dels inputs dirigits a la taula tipus_vehicle
+        $referencia = $arrayInputs['referencia'];
+        $nom = $arrayInputs['nom'];
+        $quantitat = $arrayInputs['quantitat'];
+        $preu = $arrayInputs['preu'];
+
+        //Primer es crearà un nou tipus vehicle
+        $t = new Pece;
+        $t->referencia = $referencia;
+        $t->nom = $nom;
+        $t->quantitat = $quantitat;
+        $t->preu = $preu;
+        $t->id_vehicle = $id;
+        $t->save();
+    }
+
+    public function CreatePeceSelect(Request $request, $id){
+        $arrayInputs = [
+            'referencia' => $request->input('referencia'),
+            'nom' => $request->input('nom'),
+            'quantitat' => $request->input('quantitat'),
+            'preu' => $request->input('preu'),
+        ];
+
+        switch ($request->input('options')) {
+            case 'another':
+                    $this->CreatePece($arrayInputs, $id);
+                    return view('peces.create',array('id'=>$id));
+                break;
+    
+            case 'finish':
+                    $referencia = $request->input('referencia');
+                    $nom = $request->input('nom');
+                    $quantitat = $request->input('quantitat');
+                    $preu = $request->input('preu');
+            
+                    if(isset($referencia) && isset($nom) && isset($quantitat) && isset($preu)){
+                        $this->CreatePece($arrayInputs, $id);
+                    }
+            
+                    $vehicle = Vehicle::findOrFail($id);
+            
+                    return redirect('/inventari/show/'.$id);
+                break;
+        }
+    }
+
+    public function getEditPece($id){
+        $pece = Pece::findOrFail($id);
+
+        return view('peces.edit',array('pece'=>$pece));
+    }
+
+    public function putEditPece(Request $request, $id)
+    {
+        $p = new Pece;
+        $v = $p -> findOrFail($id);
+        $v->referencia = $request->input('referencia');
+        $v->nom = $request->input('nom');
+        $v->quantitat = $request->input('quantitat');
+        $v->preu = $request->input('preu');
+        $v->save();
+
+        $vehicle = Vehicle::findOrFail($id);
+
+        return redirect('/inventari/show/'.$vehicle->id);
+    }
+
+
+    public function deletePece($id)
+    {
+        $p = new Pece;
+        $o = $p -> findOrFail($id);
+        $o->delete();
+
+        $vehicle = Vehicle::findOrFail($id);
+        
+        return redirect('/inventari/show/'.$vehicle->id);
     }
 }

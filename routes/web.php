@@ -30,6 +30,17 @@ Route::put('/inventari/edit/{id}','InventariController@putEditTVehicle')->middle
 
 Route::put('/inventari/delete/{id}','InventariController@deleteVehicle')->middleware('auth');
 
+//Peces
+Route::get('/inventari/create/{id}/peces','InventariController@getCreatePece')->middleware('auth');
+
+Route::post('/inventari/create/{id}/peces','InventariController@CreatePeceSelect')->middleware('auth');
+
+Route::get('/peces/edit/{id}','InventariController@getEditPece')->middleware('auth');
+
+Route::put('/peces/edit/{id}','InventariController@putEditPece')->middleware('auth');
+
+Route::put('/peces/delete/{id}','InventariController@deletePece')->middleware('auth');
+
 /* Rutes per administrar les tasques*/
 Route::get('/treballs','TreballsController@getTreballs')->middleware('auth');
 
