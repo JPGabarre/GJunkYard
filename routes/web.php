@@ -18,6 +18,8 @@ Route::get('/','HomeController@getHome');
 /* Rutes per administrar el inventari */
 Route::get('/inventari','InventariController@getInventari')->middleware('auth');
 
+Route::post('/inventari/action', 'InventariController@action')->middleware('auth');
+
 Route::get('/inventari/show/{id}','InventariController@getVehicle')->middleware('auth');
 
 Route::get('/inventari/create','InventariController@getCreateVehicle')->middleware('auth');
@@ -59,6 +61,8 @@ Route::put('/treballs/delete/{id}','TreballsController@deleteTreball')->middlewa
 /* Rutes per administrar usuaris (només podra accedir el admin) */
 Route::get('/users','UsersController@getUsers')->middleware('auth');
 
+Route::post('/users/action', 'UsersController@action')->middleware('auth');
+
 Route::get('/users/show/{id}','UsersController@getUser')->middleware('auth');
 
 Route::get('/users/create','UsersController@getCreateUser')->middleware('auth');
@@ -69,7 +73,7 @@ Route::post('/users/create','UsersController@postCreateUser')->middleware('auth'
 
 Route::put('/users/edit/{id}','UsersController@putEditUser')->middleware('auth');
 
-Route::put('/users/delete/{id}','UsersController@deleteUser')->middleware('auth');
+Route::post('/users/delete/{id}','UsersController@deleteUser')->middleware('auth');
 
 
 Auth::routes();

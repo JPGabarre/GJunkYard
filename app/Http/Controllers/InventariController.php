@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Vehicle;
 use App\Tipus_vehicle;
 use App\Pece;
+use DB;
 
 class InventariController extends Controller
 {
@@ -13,6 +14,75 @@ class InventariController extends Controller
         $vehicle = Vehicle::all();
 
         return view('inventari.index',array('arrayVehicles'=>$vehicle));
+    }
+
+    function action(Request $request)
+    {
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+       $data = DB::table('vehicles')
+         ->join('tipus_vehicles', function ($join) {
+             $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
+                  ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model')
+                  ->where('tipus_vehicles.marca', 'like', '%'.$query.'%')
+                  ->orWhere('tipus_vehicles.model', 'like', '%'.$query.'%')
+                  ->orWhere('vehicles.any_matriculacio', 'like', '%'.$query.'%')
+                  ->orderBy('tipus_vehicles.marca', 'asc');
+         })
+         ->get();
+      }
+      else
+      {
+       $data = DB::table('vehicles')
+       ->join('tipus_vehicles', function ($join) {
+           $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
+                ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model')
+                ->orderBy('tipus_vehicles.marca', 'asc');
+       })
+       ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+            <td>'.$row->marca.'</td>
+            <td>'.$row->model.'</td>
+            <td>'.$row->any_matriculacio.'</td>
+            <td>
+                <a class="btn btn-info" href="inventari/show/'.$row->id.'">Mostrar</a>
+                <a class="btn btn-primary" href="inventari/edit/'.$row->id.'">Editar</a>
+                <form action="inventari/delete/'.$row->id.'" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    <button type="submit" class="btn btn-danger" style="display:inline">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
     }
 
     public function getVehicle($id){

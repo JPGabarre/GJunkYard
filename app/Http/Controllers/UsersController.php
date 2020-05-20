@@ -5,13 +5,75 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Rol;
+use DB;
 
 class UsersController extends Controller
 {
-    public function getUsers(){
+    public function getUsers()
+    {
         $user = User::all();
 
         return view('users.index',array('arrayUsers'=>$user));
+    }
+
+    function action(Request $request)
+    {
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+       $data = User::where('nom', 'like', '%'.$query.'%')
+         ->orWhere('cognoms', 'like', '%'.$query.'%')
+         ->orWhere('email', 'like', '%'.$query.'%')
+         ->orderBy('id', 'asc')
+         ->get();
+      }
+      else
+      {
+       $data = User::orderBy('id', 'asc')
+         ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+            <td>'.$row->nom.'</td>
+            <td>'.$row->cognoms.'</td>
+            <td>'.$row->email.'</td>
+            <td>'.$row->rols->nom.'</td>
+            <td>
+                <a class="btn btn-info" href="users/show/'.$row->id.'">Mostrar</a>
+                <a class="btn btn-primary" href="users/edit/'.$row->id.'">Editar</a>
+                <form action="users/delete/'.$row->id.'" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    <button type="submit" class="btn btn-danger" style="display:inline">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
     }
 
     public function getUser($id){
