@@ -46,6 +46,8 @@ Route::put('/peces/delete/{id}','InventariController@deletePece')->middleware('a
 /* Rutes per administrar les tasques*/
 Route::get('/treballs','TreballsController@getTreballs')->middleware('auth');
 
+Route::put('/treballs/update/{id}','TreballsController@putRealitzarTreball')->middleware('auth');
+
 Route::get('/treballs/show/{id}','TreballsController@getTreball')->middleware('auth');
 
 Route::get('/treballs/create','TreballsController@getCreateTreball')->middleware('auth');

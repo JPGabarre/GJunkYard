@@ -16,24 +16,28 @@ class TreballsController extends Controller
         return view('treballs.index',array('arrayTreballs'=>$treball),array('arrayTipus_Treballs'=>$tipus_treball));
     }
 
+    public function putRealitzarTreball($id,Request $request){
+
+        $treball = Treball::findOrFail($id);
+        $id_tipus_treball = $request->input('id_tipus_treball');
+
+        if( $treball->id_tipus_treball!=$id_tipus_treball){
+            $p = new Treball;
+            $o = $p -> findOrFail($id);
+            $o->id_tipus_treball = $id_tipus_treball;
+            $o->save();
+        }
+
+        $treball = Treball::findOrFail($id);
+        
+        return redirect('/treballs');
+    }
+
     public function getTreball($id){
         $treball = Treball::findOrFail($id);
 
         return view('treballs.show', array('treball'=>$treball));
     }
-
-    /*
-    public function getShow($id)
-    {
-		$movie = Movie::findOrFail($id);
-        $reviews = Review::where('movie_id',$id)->get();
-
-        //metode per comprobar si la pelicula esta en las llista de preferits del usuari
-        $user = Auth::user()->id;
-        $favoriteMovie = Favorite::where('user_id',$user)->where('movie_id',$id)->get();
-
-        return view('catalog.show',array('pelicula'=>$movie,'reviews'=>$reviews,'favoriteMovie'=>$favoriteMovie));
-    }*/
 
     public function getCreateTreball(){
         $rol = Rol::all();

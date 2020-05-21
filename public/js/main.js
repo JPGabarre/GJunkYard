@@ -30,8 +30,14 @@
 
 $(document).ready(function(){
 
-    fetch_customer_dataUsers();
-    fetch_customer_dataVehicles();
+    var URLactual = window.location;
+
+    if(URLactual == 'http://localhost/gjunkyard/inventari'){
+        fetch_customer_dataVehicles();
+    }else if(URLactual == 'http://localhost/gjunkyard/users'){
+        fetch_customer_dataUsers();
+    }
+
 
     $(document).on('keyup', '#searchUsers', function(){
         var query = $(this).val();
