@@ -32,6 +32,8 @@ Route::put('/inventari/edit/{id}','InventariController@putEditTVehicle')->middle
 
 Route::put('/inventari/delete/{id}','InventariController@deleteVehicle')->middleware('auth');
 
+Route::get('/inventari/xml/export','XMLFormatController@ExportarVehiclesDades')->middleware('auth');
+
 //Peces
 Route::get('/inventari/create/{id}/peces','InventariController@getCreatePece')->middleware('auth');
 
@@ -77,6 +79,7 @@ Route::put('/users/edit/{id}','UsersController@putEditUser')->middleware('auth')
 
 Route::post('/users/delete/{id}','UsersController@deleteUser')->middleware('auth');
 
+Route::get('/users/xml/export','XMLFormatController@ExportarUsersDades')->middleware('auth');
 
 Auth::routes();
 

@@ -27,12 +27,12 @@ class InventariController extends Controller
         $data = DB::table('vehicles')
             ->join('tipus_vehicles', function ($join) {
                 $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
-                    ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model')
-                    ->where('tipus_vehicles.marca', 'like', '%'.$query.'%')
-                    ->orWhere('tipus_vehicles.model', 'like', '%'.$query.'%')
-                    ->orWhere('vehicles.any_matriculacio', 'like', '%'.$query.'%')
-                    ->orderBy('tipus_vehicles.marca', 'asc');
+                ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model');
             })
+            ->where('tipus_vehicles.marca', 'like', '%'.$query.'%')
+            ->orWhere('tipus_vehicles.model', 'like', '%'.$query.'%')
+            ->orWhere('vehicles.any_matriculacio', 'like', '%'.$query.'%')
+            ->orderBy('tipus_vehicles.marca', 'asc')
             ->get();
         }
         else

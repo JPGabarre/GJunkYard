@@ -9,6 +9,7 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{url('/inventari/create')}}"> Nou vehicle</a>
+                <a class="btn btn-primary" href="{{url('/inventari/xml/export')}}"> Descarregar XML</a>
             </div>
         </div>
     </div>
@@ -29,26 +30,5 @@
 
         </tbody>
     </table>
-    <!--
-    @foreach($arrayVehicles as $vehicle)
-    <tr>
-        <td>{{ $vehicle->tipus_vehicle->marca}}</td>
-        <td>{{ $vehicle->tipus_vehicle->model}}</td>
-        <td>{{ $vehicle->any_matriculacio }}</td>
-        <td>
-            <a class="btn btn-info" href="{{ url('/inventari/show/'.$vehicle->id) }}">Mostrar</a>
-            <a class="btn btn-primary" href="{{ url('/inventari/edit/'.$vehicle->id) }}">Editar</a>
-            <form action="{{action('InventariController@deleteVehicle', $vehicle->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
-                    {{ method_field('PUT') }}
-                    {{ csrf_field() }}
-                    <button type="submit" class="btn btn-danger" style="display:inline">
-                        Eliminar
-                    </button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-</table>
--->
     
 @stop

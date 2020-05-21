@@ -9,6 +9,9 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{url('/users/create')}}"> Nou Usuari</a>
+                @if(Auth::user()->id_rol == 1)
+                    <a class="btn btn-primary" href="{{url('/users/xml/export')}}"> Descarregar XML</a>
+                @endif
             </div>
         </div>
     </div>
