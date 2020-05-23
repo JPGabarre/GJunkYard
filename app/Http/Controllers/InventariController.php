@@ -58,9 +58,9 @@ class InventariController extends Controller
                 <td>
                     <a class="btn btn-info" href="inventari/show/'.$row->id.'">Mostrar</a>
                     <a class="btn btn-primary" href="inventari/edit/'.$row->id.'">Editar</a>
-                    <form action="inventari/delete/'.$row->id.'" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    <form action="inventari/delete/'.$row->id.'" method="POST" style="display:inline; margin-right:5px;">
                         <button type="submit" class="btn btn-danger" style="display:inline">
-                            Eliminar
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </form>
                 </td>

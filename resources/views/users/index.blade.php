@@ -20,20 +20,22 @@
         <input type="text" name="searchUsers" id="searchUsers" class="form-control" placeholder="Busca per qualsevol dade dels usuaris" />
     </div>
     <br>
-    <table class="table" style="text-align:center">
-        <thead>
-            <tr>
-                <th style="text-align:center">Nom</th>
-                <th style="text-align:center">Cognoms</th>
-                <th style="text-align:center">E-mail</th>
-                <th style="text-align:center">Rol</th>
-                <th style="padding-left:110px; width:280px;">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-striped mb-0" style="text-align:center">
+            <thead>
+                <tr>
+                    <th style="text-align:center">Nom</th>
+                    <th style="text-align:center">Cognoms</th>
+                    <th style="text-align:center">E-mail</th>
+                    <th style="text-align:center">Rol</th>
+                    <th style="padding-left:110px; width:280px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 <script>
     $(document).ready(function(){
 

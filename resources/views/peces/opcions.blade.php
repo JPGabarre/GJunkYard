@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div>
+    <div class="container" style="text-align:center">
         <h4>Vols afegir alguna peça?</h4>
         <br>
         <a class="btn btn-info" href="{{ url('/inventari/create/'.$vehicle->id.'/peces') }}">Afegir Peces</a>

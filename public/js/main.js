@@ -67,5 +67,6 @@ $(document).ready(function(){
          $("#actualTipusVehicle").show();
       }
    });
+   
 
 });

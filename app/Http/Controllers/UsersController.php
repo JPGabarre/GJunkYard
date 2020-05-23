@@ -49,9 +49,9 @@ class UsersController extends Controller
             <td>
                 <a class="btn btn-info" href="users/show/'.$row->id.'">Mostrar</a>
                 <a class="btn btn-primary" href="users/edit/'.$row->id.'">Editar</a>
-                <form action="users/delete/'.$row->id.'" method="POST" style="display:inline; float:right; margin-right:5px;">
+                <form action="users/delete/'.$row->id.'" method="POST" style="display:inline; margin-right:5px;">
                     <button type="submit" class="btn btn-danger" style="display:inline">
-                        Eliminar
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </form>
             </td>

@@ -2,6 +2,7 @@
 
 @section('content')
 
+<div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
@@ -16,15 +17,43 @@
             </div>
         </div>
     </div>
-
-    <div>
-        <h4><b>DNI: </b> {{$user->DNI}} </h4>
-        <h4><b>Nom: </b> {{$user->nom}}  <b>Cognoms: </b> {{$user->cognoms}} </h4>
-        <h4><b>Telefon: </b> {{$user->telefon}} </h4>
-        <h4><b>E-mail: </b> {{$user->email}} </h4>
-        <h4><b>Rol: </b> {{$user->rols->nom}} </h4>
-        <h4><b>Permisos</b></h4>
-        <p>{{$user->rols->permisos}}</p>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <h2><b>{{$user->nom}}  {{$user->cognoms}}</b></h2>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <h4><b>DNI: </b> {{$user->DNI}} </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <h4><b>Telefon: </b> {{$user->telefon}} </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <h4><b>E-mail: </b> {{$user->email}} </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <h4><b>Rol: </b> {{$user->rols->nom}} </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <h4><b>Permisos</b></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <p>{{$user->rols->permisos}}</p>
+            </div>
+        </div>
+    </div>
+</div>
     
 @stop
