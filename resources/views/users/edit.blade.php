@@ -44,18 +44,6 @@
             </div>
 
             <div class="form-group">
-                {{-- TODO: Completa el input per emplenar la contrasenya del nou usuari --}}
-               <label for="pass1">Contrasenya Nova</label>
-               <input type="text" name="pass1" id="pass1" class="form-control">
-            </div>
-
-            <div class="form-group">
-                {{-- TODO: Completa el input per emplenar la contrasenya del nou usuari --}}
-               <label for="pass2">Confirma la contrasenya nova</label>
-               <input type="text" name="pass2" id="pass2" class="form-control">
-            </div>
-
-            <div class="form-group">
                 {{-- TODO: Completa l'input per dir el rol que tindra el nou usuari --}}
                 <label for="id_rol">Selecciona el rol que tindra: </label>
                 <select id="id_rol" name="id_rol" class="form-control" style="height:30px">
@@ -67,6 +55,29 @@
                         @endif
                     @endforeach
                 </select>
+            </div>
+
+            <div class="form-group" id="editarContDiv">
+               <p><b>Vols editar també la contrasenya?</b></p>
+               <button class="btn btn-success" type="button" id="editarContButton">Editar</button> 
+            </div>
+
+            <div class="form-group" id="editarContrasenya">
+               <div class="form-group">
+                  {{-- TODO: Completa el input per emplenar la contrasenya del nou usuari --}}
+                  <label for="pass1">Contrasenya Nova</label>
+                  <input type="text" name="pass1" id="pass1" class="form-control">
+               </div>
+
+               <div class="form-group">
+                  {{-- TODO: Completa el input per emplenar la contrasenya del nou usuari --}}
+                  <label for="pass2">Confirma la contrasenya nova</label>
+                  <input type="text" name="pass2" id="pass2" class="form-control">
+               </div>
+
+               <div class="form-group">
+                  <button class="btn btn-danger" type="button" id="cancelarContButton">Cancelar</button> 
+               </div>
             </div>
 
             <div class="form-group text-center">
@@ -81,5 +92,5 @@
       </div>
    </div>
 </div>
-    
+
 @stop

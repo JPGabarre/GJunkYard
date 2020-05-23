@@ -111,7 +111,8 @@ class InventariController extends Controller
         $portes = $request->input('portes');
         $places = $request->input('places');
         $any_matriculacio = $request->input('any_matriculacio');
-        $id_tipus_vehicle = $request->input('id_tipus_vehicle');
+        $marcaSelect = $request->input('marca2');
+        $modelSelect = $request->input('model2');
 
 
         if(isset($marca) && isset($model)){
@@ -134,15 +135,18 @@ class InventariController extends Controller
             $v->id_tipus_vehicle = $tipus_vehicle[0]->id;
             $v->save();
         }else{
-            //Es creara un vehicle i el id del tipus vehicle serà el del select
-            $v = new Vehicle;
-            $v->bastidor = $bastidor;
-            $v->combustible = $combustible;
-            $v->portes = $portes;
-            $v->places = $places;
-            $v->any_matriculacio = $any_matriculacio;
-            $v->id_tipus_vehicle = $id_tipus_vehicle;
-            $v->save();
+            $tipus_vehicle = Tipus_vehicle::where('model',$modelSelect)->get();
+            if($tipus_vehicle[0]->marca==$marcaSelect){
+                //Es creara un vehicle i el id del tipus vehicle serà el del select
+                $v = new Vehicle;
+                $v->bastidor = $bastidor;
+                $v->combustible = $combustible;
+                $v->portes = $portes;
+                $v->places = $places;
+                $v->any_matriculacio = $any_matriculacio;
+                $v->id_tipus_vehicle = $tipus_vehicle[0]->id;
+                $v->save();
+            }
         }
 
         $vehicle = Vehicle::where('bastidor',$bastidor)->get();
@@ -162,6 +166,8 @@ class InventariController extends Controller
         //Variable dels inputs dirigits a la taula tipus_vehicle
         $marca = $request->input('marca');
         $model = $request->input('model');
+        $marcaSelect = $request->input('marca2');
+        $modelSelect = $request->input('model2');
 
         if(isset($marca) && isset($model)){
             //Primer es crearà un nou tipus vehicle
@@ -184,16 +190,19 @@ class InventariController extends Controller
             $v->id_tipus_vehicle = $tipus_vehicle->id;
             $v->save();
         }else{
-            //Es creara un vehicle i el id del tipus vehicle serà el del select
-            $p = new Vehicle;
-            $v = $p -> findOrFail($id);
-            $v->bastidor = $request->input('bastidor');
-            $v->combustible = $request->input('combustible');
-            $v->portes = $request->input('portes');
-            $v->places = $request->input('places');
-            $v->any_matriculacio = $request->input('any_matriculacio');
-            $v->id_tipus_vehicle = $request->input('id_tipus_vehicle');
-            $v->save();
+            $tipus_vehicle = Tipus_vehicle::where('model',$modelSelect)->get();
+            if($tipus_vehicle[0]->marca==$marcaSelect){
+                //Es creara un vehicle i el id del tipus vehicle serà el del select
+                $p = new Vehicle;
+                $v = $p -> findOrFail($id);
+                $v->bastidor = $request->input('bastidor');
+                $v->combustible = $request->input('combustible');
+                $v->portes = $request->input('portes');
+                $v->places = $request->input('places');
+                $v->any_matriculacio = $request->input('any_matriculacio');
+                $v->id_tipus_vehicle = $tipus_vehicle[0]->id;
+                $v->save();
+            } 
         }
 
         $vehicle = Vehicle::findOrFail($id);

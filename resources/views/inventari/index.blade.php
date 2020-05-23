@@ -31,4 +31,11 @@
         </tbody>
     </table>
     
+    <script>
+        $(document).ready(function(){
+        
+        fetch_customer_dataVehicles();
+
+        });
+    </script>
 @stop

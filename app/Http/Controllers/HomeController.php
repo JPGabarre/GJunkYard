@@ -29,8 +29,6 @@ class HomeController extends Controller
 
     public function getHome()
     {
-        $vehicle = Vehicle::all();
-
-        return view('inventari.index',array('arrayVehicles'=>$vehicle));
+        return redirect('/inventari');
     }
 }

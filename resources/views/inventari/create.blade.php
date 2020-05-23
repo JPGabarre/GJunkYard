@@ -42,36 +42,49 @@
                <input type="text" name="places" id="places" class="form-control">
             </div>
 
-            <div class="form-group">
-               {{-- TODO: Completa l'input per dir la marca del vehicle --}}
-               <label for="marca">Marca</label>
-               <input type="text" name="marca" id="marca" class="form-control">
+            <div class="form-group" id="actualTipusVehicle">
+               <div class="form-group">
+                  {{-- TODO: Completa l'input per dir la marca del vehicle --}}
+                  <label for="marca2">Marca</label>
+                  <select id="marca2" name="marca2" class="form-control" style="height:30px">
+                     @foreach ($arrayTipus_vehicles as $tipus_vehicle)
+                           <option value="{{ $tipus_vehicle->marca }}">{{ $tipus_vehicle->marca }}</option>
+                     @endforeach
+                  </select>
+               </div>
+
+               <div class="form-group">
+                  {{-- TODO: Completa l'input per dir el model del vehicle --}}
+                  <label for="model2">Model</label>
+                  <select id="model2" name="model2" class="form-control" style="height:30px">
+                     @foreach ($arrayTipus_vehicles as $tipus_vehicle)
+                           <option value="{{ $tipus_vehicle->model }}">{{ $tipus_vehicle->model }}</option>
+                     @endforeach
+                  </select>
+               </div>
+
+               <div class="form-group">
+                  <p><b>Vols afegir una nova marca i model?</b></p>
+                  <button class="btn btn-success" type="button" id="nouTVButton">Afegir</button> 
+               </div>
             </div>
 
-            <div class="form-group">
-               {{-- TODO: Completa l'input per dir el model del vehicle --}}
-               <label for="model">Model</label>
-               <input type="text" name="model" id="model" class="form-control">
-            </div>
+            <div class="form-group" id="nouTipusVehicle">
+               <div class="form-group">
+                  {{-- TODO: Completa l'input per dir la marca del vehicle --}}
+                  <label for="marca">Marca</label>
+                  <input type="text" name="marca" id="marca" class="form-control">
+               </div>
 
-            <div class="form-group">
-                {{-- TODO: Completa l'input per dir la marca del vehicle --}}
-                <label for="marca2">Marca</label>
-                <select id="marca2" name="marca2" class="form-control" style="height:30px">
-                    @foreach ($arrayTipus_vehicles as $tipus_vehicle)
-                        <option value="{{ $tipus_vehicle->marca }}">{{ $tipus_vehicle->marca }}</option>
-                    @endforeach
-                </select>
-            </div>
+               <div class="form-group">
+                  {{-- TODO: Completa l'input per dir el model del vehicle --}}
+                  <label for="model">Model</label>
+                  <input type="text" name="model" id="model" class="form-control">
+               </div>
 
-            <div class="form-group">
-                {{-- TODO: Completa l'input per dir el model del vehicle --}}
-                <label for="id_tipus_vehicle">Model</label>
-                <select id="id_tipus_vehicle" name="id_tipus_vehicle" class="form-control" style="height:30px">
-                    @foreach ($arrayTipus_vehicles as $tipus_vehicle)
-                        <option value="{{ $tipus_vehicle->id }}">{{ $tipus_vehicle->model }}</option>
-                    @endforeach
-                </select>
+               <div class="form-group">
+                  <button class="btn btn-danger" type="button" id="cancelarTVButton">Cancelar</button> 
+               </div>
             </div>
 
             <div class="form-group text-center">
@@ -86,5 +99,4 @@
       </div>
    </div>
 </div>
-    
 @stop
