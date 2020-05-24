@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <h4><b>Telefon: </b> {{$user->telefon}} </h4>
+                <h4><b>Telèfon: </b> {{$user->telefon}} </h4>
             </div>
         </div>
         <div class="row">

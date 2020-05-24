@@ -28,7 +28,7 @@
             <div class="col-md-6"><h4><b>Model: </b> {{$vehicle->tipus_vehicle->model}}</h4></div>
         </div>
         <div class="row">
-            <div class="col-md-12"><h4><b>Numero Bastidor: </b> {{$vehicle->bastidor}}</h4></div>
+            <div class="col-md-12"><h4><b>Número Bastidor: </b> {{$vehicle->bastidor}}</h4></div>
         </div>
         <div class="row">
             <div class="col-md-4"><h4><b>Combustible: </b> {{$vehicle->combustible}}</h4></div>
@@ -51,13 +51,13 @@
             </div>
         </div>
         <div class="container table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table" style="text-align:center">
+            <table class="table">
                 <tr>
-                    <th style="text-align:center">Nom</th>
-                    <th style="text-align:center">Numero de Referencia</th> 
-                    <th style="text-align:center">Stock</th>
-                    <th style="text-align:center">Preu</th>
-                    <th style="padding-left:110px; width:280px;">Accions</th>
+                    <th>Nom</th>
+                    <th>Número de Referència</th> 
+                    <th>Stock</th>
+                    <th>Preu</th>
+                    <th style="width:280px;">Accions</th>
                 </tr>
                 @foreach($arrayPeces as $pece)
                 <tr>
@@ -66,8 +66,8 @@
                     <td>{{ $pece->quantitat}}</td>
                     <td>{{ $pece->preu}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ url('/peces/edit/'.$pece->id) }}" style="margin-right:5px">Editar</a>
-                        <form action="{{action('InventariController@deletePece', $pece->id)}}" method="POST" style="display:inline; margin-right:5px;">
+                        <a class="btn btn-primary" href="{{ url('/peces/edit/'.$pece->id) }}">Editar</a>
+                        <form action="{{action('InventariController@deletePece', $pece->id)}}" method="POST" style="display:inline;">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-danger" style="display:inline">

@@ -16,72 +16,73 @@ class InventariController extends Controller
         return view('inventari.index',array('arrayVehicles'=>$vehicle));
     }
 
+    /*Peticio AJAX a una taula amb informacio tant de vehicle com tipus vehicle.
+      Quan en el cercador de la view inventari.index introduim dades es cercara 
+      en aquesta taula algun camp que sigui semblant al del input i el retornara*/
     function action(Request $request)
     {
-        if($request->ajax())
-        {
-        $output = '';
-        $query = $request->get('query');
-        if($query != '')
-        {
-        $data = DB::table('vehicles')
-            ->join('tipus_vehicles', function ($join) {
-                $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
-                ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model');
-            })
-            ->where('tipus_vehicles.marca', 'like', '%'.$query.'%')
-            ->orWhere('tipus_vehicles.model', 'like', '%'.$query.'%')
-            ->orWhere('vehicles.any_matriculacio', 'like', '%'.$query.'%')
-            ->orderBy('tipus_vehicles.marca', 'asc')
-            ->get();
-        }
-        else
-        {
-        $data = DB::table('vehicles')
-        ->join('tipus_vehicles', function ($join) {
-            $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
-                    ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model')
-                    ->orderBy('tipus_vehicles.marca', 'asc');
-        })
-        ->get();
-        }
-        $total_row = $data->count();
-        if($total_row > 0)
-        {
-        foreach($data as $row)
-        {
-            $output .= '
-            <tr>
-                <td>'.$row->marca.'</td>
-                <td>'.$row->model.'</td>
-                <td>'.$row->any_matriculacio.'</td>
-                <td>
-                    <a class="btn btn-info" href="inventari/show/'.$row->id.'">Mostrar</a>
-                    <a class="btn btn-primary" href="inventari/edit/'.$row->id.'">Editar</a>
-                    <form action="inventari/delete/'.$row->id.'" method="POST" style="display:inline; margin-right:5px;">
-                        <button type="submit" class="btn btn-danger" style="display:inline">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            ';
-        }
-        }
-        else
-        {
-        $output = '
-        <tr>
-            <td align="center" colspan="5">No Data Found</td>
-        </tr>
-        ';
-        }
-        $data = array(
-        'table_data'  => $output,
-        'total_data'  => $total_row
-        );
+        if($request->ajax()){
+            $output = '';
+            $query = $request->get('query');
+            if($query != ''){
+            /*Query de un select a la taula vehicles amb un join de la taula tipus_vehicles, 
+            despres afegeixo un if per buscar en cada un dels camps creats*/
+            $data = DB::table('vehicles')
+                ->join('tipus_vehicles', function ($join) {
+                    $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
+                    ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model');
+                })
+                ->where('tipus_vehicles.marca', 'like', '%'.$query.'%')
+                ->orWhere('tipus_vehicles.model', 'like', '%'.$query.'%')
+                ->orWhere('vehicles.any_matriculacio', 'like', '%'.$query.'%')
+                ->orderBy('tipus_vehicles.marca', 'asc')
+                ->get();
+            }
+            else{
+                /*Query de un select a la taula vehicles amb un join de la taula tipus_vehicles*/
+                $data = DB::table('vehicles')
+                ->join('tipus_vehicles', function ($join) {
+                    $join->on('vehicles.id_tipus_vehicle', '=', 'tipus_vehicles.id')
+                            ->select('vehicles.*', 'tipus_vehicles.marca', 'tipus_vehicles.model')
+                            ->orderBy('tipus_vehicles.marca', 'asc');
+                })
+                ->get();
+            }
+            //Mirarem si ens han retornat algo en la peticio AJAX
+            $total_row = $data->count();
+            if($total_row > 0){
+                foreach($data as $row)
+                {
+                    $output .= '
+                    <tr>
+                        <td>'.$row->marca.'</td>
+                        <td>'.$row->model.'</td>
+                        <td>'.$row->any_matriculacio.'</td>
+                        <td>
+                            <a class="btn btn-info" href="inventari/show/'.$row->id.'">Mostrar</a>
+                            <a class="btn btn-primary" href="inventari/edit/'.$row->id.'">Editar</a>
+                            <form action="inventari/delete/'.$row->id.'" method="POST" style="display:inline; margin-right:5px;">
+                                <button type="submit" class="btn btn-danger" style="display:inline">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    ';
+                }
+            }else {
+                $output = '
+                <tr>
+                    <td align="center" colspan="5">No Data Found</td>
+                </tr>
+                ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
 
-        echo json_encode($data);
+            echo json_encode($data);
         }
     }
 
@@ -99,6 +100,7 @@ class InventariController extends Controller
         return view('inventari.create',array('arrayTipus_vehicles'=>$tipus_vehicle));
     }
 
+    /* Funcio que farà un post per la creació del nou vehicle */
     public function postCreateTVehicle(Request $request)
     {
         //Variable dels inputs dirigits a la taula tipus_vehicle
@@ -115,6 +117,9 @@ class InventariController extends Controller
         $modelSelect = $request->input('model2');
 
 
+        /*En cas de que la variable marca i model no estiguin buides primer 
+        crearem el nou tipus_vehicle i despres el vehicle.
+        Quan acabi el post ens apareixerà una view preguntant si volem afegir peces al nou vehicle*/
         if(isset($marca) && isset($model)){
             //Primer es crearà un nou tipus vehicle
             $t = new Tipus_vehicle;
@@ -161,6 +166,7 @@ class InventariController extends Controller
         return view('inventari.edit',array('vehicle'=>$vehicle),array('arrayTipus_vehicles'=>$tipus_vehicles));
     }
 
+    //Farem un PUT per editar la informació de un vehicle (funcionament similar a la funció de crear que hem fet abans)
     public function putEditTVehicle(Request $request, $id)
     {
         //Variable dels inputs dirigits a la taula tipus_vehicle
@@ -241,6 +247,8 @@ class InventariController extends Controller
         $t->save();
     }
 
+    /*Depenguen el boto que hem seleccionat en la vista peces.create es crearà o no una pece i despres 
+    o tornara a la mateixa view per crear un altre pece o tornara a el show de un vehicle*/
     public function CreatePeceSelect(Request $request, $id){
         $arrayInputs = [
             'referencia' => $request->input('referencia'),
@@ -249,6 +257,7 @@ class InventariController extends Controller
             'preu' => $request->input('preu'),
         ];
 
+        //Switch amb el que segons el valor del buton que hem seleccionat fara una cosa o un altre
         switch ($request->input('options')) {
             case 'another':
                     $this->CreatePece($arrayInputs, $id);
@@ -261,6 +270,7 @@ class InventariController extends Controller
                     $quantitat = $request->input('quantitat');
                     $preu = $request->input('preu');
             
+                    //Si les seguents variables estan plenes es creara una nova pece
                     if(isset($referencia) && isset($nom) && isset($quantitat) && isset($preu)){
                         $this->CreatePece($arrayInputs, $id);
                     }
@@ -292,7 +302,6 @@ class InventariController extends Controller
 
         return redirect('/inventari/show/'.$vehicle->id);
     }
-
 
     public function deletePece($id)
     {

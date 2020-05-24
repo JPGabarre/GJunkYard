@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="{{url('/inventari')}}" style="color:#777">
-            <img src="public/assets/logo_img_cp.png" style="margin-top:-45px">
+            <img src="public/assets/logo_img_red.png" style="margin-top:-60px">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,24 +12,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ Request::is('inventari') && ! Request::is('catalog/create')? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/inventari')}}">Inventari</a>
+                        <a class="nav-link p-4" href="{{url('/inventari')}}">Inventari</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ Request::is('treballs') ? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/treballs')}}">Tasques</a>
+                        <a class="nav-link p-4" href="{{url('/treballs')}}">Tasques</a>
                     </li>
                 </ul>
                 @if( Auth::user()->id_rol == 1)
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ Request::is('users') ? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/users')}}">Usuaris</a>
+                        <a class="nav-link p-4" href="{{url('/users')}}">Usuaris</a>
                     </li>
                 </ul>
                 @endif
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item"  style="margin-top:12px; margin-left:5px;">
-                        <a href="{{ url('/users/show/'. Auth::user()->id) }}" id="actualUser" style="display:inline;cursor:pointer">
+                        <a class="p-4" href="{{ url('/users/show/'. Auth::user()->id) }}" id="actualUser" style="display:inline;cursor:pointer">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             {{Auth::user()->nom}}
                         </a>

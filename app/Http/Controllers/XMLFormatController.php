@@ -10,6 +10,7 @@ use App\User;
 
 class XMLFormatController extends Controller
 {
+    //Funcio la qual exportara en un XML personalitzat les dades de les taules Vehicles i Peces
     public function ExportarVehiclesDades(){
         $arrayVehicles = Vehicle::all();
         $arrayTipusVehicles = Tipus_vehicle::all();
@@ -57,6 +58,7 @@ class XMLFormatController extends Controller
         return response($content)->header('Content-Type', 'text/xml');
     }
 
+    //Funcio la qual exportara en un XML personalitzat les dades de la taula Usuaris
     public function ExportarUsersDades(){
         $arrayUsers = User::all();
 

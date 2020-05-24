@@ -13,6 +13,9 @@ use App\Treball;
 
 class APIController extends Controller
 {
+    //Les seguents funcions que trobarem son per retornar una API les dades, en llista o individualment, de les entitats de la BD
+    
+    //USERS
     public function indexUsers() {
         return response()->json( User::all() );
     }
@@ -21,6 +24,7 @@ class APIController extends Controller
         return response()->json( User::findOrFail($id) );
     }
 
+    //ROLS
     public function indexRols() {
         return response()->json( Rol::all() );
     }
@@ -29,6 +33,7 @@ class APIController extends Controller
         return response()->json( Rol::findOrFail($id) );
     }
 
+    //TIPUS VEHICLES
     public function indexTipusVehicles() {
         return response()->json( Tipus_vehicle::all() );
     }
@@ -37,6 +42,7 @@ class APIController extends Controller
         return response()->json( Tipus_vehicle::findOrFail($id) );
     }
 
+    //VEHICLES
     public function indexVehicles() {
         return response()->json( Vehicle::all() );
     }
@@ -45,6 +51,7 @@ class APIController extends Controller
         return response()->json( Vehicle::findOrFail($id) );
     }
 
+    //PECES
     public function indexPeces() {
         return response()->json( Pece::all() );
     }
@@ -53,6 +60,7 @@ class APIController extends Controller
         return response()->json( Pece::findOrFail($id) );
     }
 
+    //TIPUS TREBALLS
     public function indexTipusTreballs() {
         return response()->json( Tipus_treball::all() );
     }
@@ -61,6 +69,7 @@ class APIController extends Controller
         return response()->json( Tipus_treball::findOrFail($id) );
     }
 
+    //TREBALLS
     public function indexTreballs() {
         return response()->json( Treball::all() );
     }

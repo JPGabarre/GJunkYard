@@ -3,7 +3,7 @@ html, body {
     color: #636b6f;
 }
 
-
+/* TAULES */
 /* Gracies a aquestes 2 classes podem desplaçarnos per les taules depenguen del dispositius en els quals accedim a la web */
 .my-custom-scrollbar {
     position: relative;
@@ -12,4 +12,17 @@ html, body {
 }
 .table-wrapper-scroll-y {
     display: block;
+}
+
+table td a, table td button {
+    margin-top:5px;
+}
+
+table th, table {
+    text-align:center;
+}
+
+#taulatreballs th {
+    border: 1px solid #636b6f;
+    border-radius: 2px;
 }

@@ -32,13 +32,13 @@
 
             <div class="form-group">
                 {{-- TODO: Completa el input per emplenar el telefon del nou usuari --}}
-               <label for="telefon">Telefon</label>
+               <label for="telefon">Telèfon</label>
                <input type="text" name="telefon" id="telefon" class="form-control">
             </div>
 
             <div class="form-group">
                 {{-- TODO: Completa el input per emplenar el correu electronic del nou usuari --}}
-               <label for="email">Correu Electronic</label>
+               <label for="email">Correu Electrònic</label>
                <input type="text" name="email" id="email" class="form-control">
             </div>
 
@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 {{-- TODO: Completa l'input per dir el rol que tindra el nou usuari --}}
-                <label for="id_rol">Selecciona el rol que tindra: </label>
+                <label for="id_rol">Selecciona el rol que tindrà: </label>
                 <select id="id_rol" name="id_rol" class="form-control" style="height:30px">
                     @foreach ($arrayRols as $rol)
                         <option value="{{ $rol->id }}">{{ $rol->nom }}</option>

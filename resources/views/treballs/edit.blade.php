@@ -27,24 +27,24 @@
 
             <div class="form-group">
                 {{-- TODO: Selecciona el tipus d'urgencia que tindra aquest treball per realitzar-se (depenguen del numero de urgencia que diguem quan aparegui el treball apareixera d'un color en particular )--}}
-                <label for="urgencia">Urgencia</label>
+                <label for="urgencia">Urgència</label>
                 <select id="urgencia" name="urgencia" class="form-control" style="height:30px">
                     @if($treball['urgencia']== 1)
                         <option value="1" selected>No corra presa ...</option>
-                        <option value="2">Es necesari ...</option>
-                        <option value="3">Es important tenir-ho fet quan abans millor ...</option>
+                        <option value="2">És necessari ...</option>
+                        <option value="3">És important tenir-ho fet com més aviat millor ...</option>
                     @elseif($treball['urgencia']== 2)
                         <option value="1">No corra presa ...</option>
-                        <option value="2" selected>Es necesari ...</option>
-                        <option value="3">Es important tenir-ho fet quan abans millor ...</option>
+                        <option value="2" selected>És necessari ...</option>
+                        <option value="3">És important tenir-ho fet com més aviat millor ...</option>
                     @elseif($treball['urgencia']== 3)
                         <option value="1">No corra presa ...</option>
-                        <option value="2">Es necesari ...</option>
-                        <option value="3" selected>Es important tenir-ho fet quan abans millor ...</option>
+                        <option value="2">És necessari ...</option>
+                        <option value="3" selected>És important tenir-ho fet com més aviat millor ...</option>
                     @else
                         <option value="1">No corra presa ...</option>
-                        <option value="2">Es necesari ...</option>
-                        <option value="3">Es important tenir-ho fet quan abans millor ...</option>
+                        <option value="2">És necessari ...</option>
+                        <option value="3">És important tenir-ho fet com més aviat millor ...</option>
                     @endif
                 </select>
             </div>
@@ -65,7 +65,7 @@
 
             <div class="form-group">
                 {{-- TODO: Completa l'input per dir quins usuaris depenguen del seu rol podran realitzar aquesta tasca (com a maxim nomes es pot posar el 2, ja que el administrador podra fer qualsevol al no tindre restriccions) --}}
-                <label for="id_rol">Rol per el que esta dirigit el seguent treball: </label>
+                <label for="id_rol">Rol per al qual està dirigit aquest treball: </label>
                 <select id="id_rol" name="id_rol" class="form-control" style="height:30px">
                     @foreach ($arrayRols as $rol)
                         @if($rol['id']!=1)

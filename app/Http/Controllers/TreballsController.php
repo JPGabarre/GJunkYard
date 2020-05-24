@@ -16,11 +16,13 @@ class TreballsController extends Controller
         return view('treballs.index',array('arrayTreballs'=>$treball),array('arrayTipus_Treballs'=>$tipus_treball));
     }
 
+    //PUT per canviar el estat de un treball(per fer, fent, acabat)
     public function putRealitzarTreball($id,Request $request){
 
         $treball = Treball::findOrFail($id);
         $id_tipus_treball = $request->input('id_tipus_treball');
 
+        //Aquest if es per evitar de que s'intenti canviar el estat del treball actual per el mateix
         if( $treball->id_tipus_treball!=$id_tipus_treball){
             $p = new Treball;
             $o = $p -> findOrFail($id);
@@ -69,7 +71,6 @@ class TreballsController extends Controller
         $treball = Treball::findOrFail($id);
         $tipus_treball = Tipus_treball::all();
         $rol = Rol::all();
-        //
 
         return view('treballs.edit',array('treball'=>$treball,'arrayTipus_Treballs'=>$tipus_treball,'arrayRols'=>$rol));
     }
@@ -82,7 +83,7 @@ class TreballsController extends Controller
         $o->descripcio = $request->input('descripcio');
         $o->urgencia = $request->input('urgencia');
         $o->id_tipus_treball = $request->input('id_tipus_treball');
-        //$o->id_rol = $request->input('id_rol');
+        $o->id_rol = $request->input('id_rol');
         $o->save();
 
         $treball = Treball::findOrFail($id);

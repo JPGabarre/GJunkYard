@@ -6,7 +6,7 @@
    <div class="offset-md-3 col-md-6">
       <div class="card">
          <div class="card-header text-center">
-            Afegir pece al vehicle
+            Afegir peça al vehicle
          </div>
          <div class="card-body" style="padding:30px">
 
@@ -14,18 +14,18 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-               <label for="referencia">Numero de referencia</label>
+               <label for="referencia">Número de referència</label>
                <input type="text" name="referencia" id="referencia" class="form-control">
             </div>
 
             <div class="form-group">
-               {{-- TODO: Completa el input per emplenar el any en el que es va matricular el vehicle --}}
+               {{-- TODO: Completa el input per emplenar el nom de la peça --}}
                <label for="nom">Nom de la peça</label>
                <input type="text" name="nom" id="nom" class="form-control">
             </div>
 
             <div class="form-group">
-               {{-- TODO: Completa l'input per dir el tipus de combustible que utilitza el vehicle --}}
+               {{-- TODO: Completa l'input per la quantitat que tenim d'aquesta peça --}}
                <label for="quantitat">Quantitat</label>
                <select id="quantitat" name="quantitat" class="form-control" style="height:30px">
                   <option value="0">0</option>
@@ -42,8 +42,8 @@
             </div>
 
             <div class="form-group">
-               {{-- TODO: Completa l'input per dir el numero de portes que te el vehicle --}}
-               <label for="preu">Preu de referencia</label>
+               {{-- TODO: Completa l'input per dir el preu de referencia de la peça --}}
+               <label for="preu">Preu de referència</label>
                <input type="text" name="preu" id="preu" class="form-control">
             </div>
 

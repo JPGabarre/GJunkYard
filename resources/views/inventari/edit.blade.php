@@ -15,7 +15,7 @@
             {{method_field('PUT')}}
 
             <div class="form-group">
-               <label for="bastidor">Numero de bastidor</label>
+               <label for="bastidor">Número de bastidor</label>
                <input type="text" name="bastidor" id="bastidor" class="form-control" value="{{$vehicle->bastidor}}">
             </div>
 

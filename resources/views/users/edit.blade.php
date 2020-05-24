@@ -33,13 +33,13 @@
 
             <div class="form-group">
                 {{-- TODO: Completa el input per emplenar el telefon del nou usuari --}}
-               <label for="telefon">Telefon</label>
+               <label for="telefon">Telèfon</label>
                <input type="text" name="telefon" id="telefon" class="form-control" value="{{$user->telefon}}">
             </div>
 
             <div class="form-group">
                 {{-- TODO: Completa el input per emplenar el correu electronic del nou usuari --}}
-               <label for="email">Correu Electronic</label>
+               <label for="email">Correu Electrònic</label>
                <input type="text" name="email" id="email" class="form-control" value="{{$user->email}}">
             </div>
 

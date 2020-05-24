@@ -38,7 +38,7 @@
                     <h4><b>Estat: </b>{{$treball->tipus_treball->nom}}</h4>
                 </div>
                 <div class="col-lg-6 margin-tb">
-                    <h4><b>Urgencia: </b>{{$treball->urgencia}}</h4>
+                    <h4><b>Urgència: </b>{{$treball->urgencia}}</h4>
                 </div>
             </div>
         </div>
