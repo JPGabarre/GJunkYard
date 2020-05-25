@@ -74,15 +74,15 @@ class DatabaseSeeder extends Seeder
 
     private $arrayTipus_Vehicles = array(
 		array(
-            'marca' => 'bmw',
+            'marca' => 'BMW',
             'model' => 'serie 5 berlina (e39) (1996-2003)'
         ),
         array(
-            'marca' => 'audi',
+            'marca' => 'AUDI',
             'model' => 'a5 coupe (8t) (2007-2016)'
         ),
         array(
-            'marca' => 'ford',
+            'marca' => 'FORD',
             'model' => 'streetka (ccs) (2003 - 2007)'      
         ),
     );
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
     private $arrayVehicles = array(
 		array(
             'bastidor' => 'VSSZZZ1MZ2R040123',
-            'combustible' => 'gasolina',
+            'combustible' => 'Gasolina',
             'portes' => 4,
             'places' => 5,
             'any_matriculacio' => '1996',
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
         ),
         array(
             'bastidor' => 'VSSZZZ1MZ2R040456',
-            'combustible' => 'diesel',
+            'combustible' => 'Diesel',
             'portes' => 3,
             'places' => 5,
             'any_matriculacio' => '2008',
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         ),
         array(
             'bastidor' => 'VSSZZZ1MZ2R040789',
-            'combustible' => 'gasolina',
+            'combustible' => 'Gasolina',
             'portes' => 3,
             'places' => 2,
             'any_matriculacio' => '2005',
@@ -117,21 +117,21 @@ class DatabaseSeeder extends Seeder
     private $arrayPeces = array(
 		array(
             'referencia' => '1422028',
-            'nom' => 'caixa de cambis',
+            'nom' => 'Caixa de cambis',
             'quantitat' => 1,
             'preu' => 250.00,
             'id_vehicle' => 1
         ),
         array(
             'referencia' => '8T0601025M',
-            'nom' => 'llantes 18 pulgades',
+            'nom' => 'Llantes 18 pulgades',
             'quantitat' => 4,
             'preu' => 96.80,
             'id_vehicle' => 2
         ),
         array(
             'referencia' => '1468149',
-            'nom' => 'carter',
+            'nom' => 'Carter',
             'quantitat' => 1,
             'preu' => 24.99,
             'id_vehicle' => 3
