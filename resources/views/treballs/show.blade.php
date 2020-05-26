@@ -7,13 +7,15 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ url('/treballs/edit/'.$treball->id) }}" style="margin-right:5px">Editar</a>
-                    <form action="{{action('TreballsController@deleteTreball', $treball->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
+                    @if( Auth::user()->id_rol != 3)
+                        <form action="{{action('TreballsController@deleteTreball', $treball->id)}}" method="POST" style="display:inline; float:right; margin-right:5px;">
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-danger" style="display:inline">
                                 Eliminar
                             </button>
-                    </form>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
