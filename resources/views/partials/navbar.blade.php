@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{{url('/inventari')}}" style="color:#777">
-            <img src="public/assets/logo_img_red.png" style="margin-top:-60px">
+        <a class="navbar-brand" href="{{url('/inventari')}}">
+            <img src="public/assets/logo_img_red.png" alt="logoWeb" id="logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

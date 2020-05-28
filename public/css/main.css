@@ -26,3 +26,8 @@ table th, table {
     border: 1px solid #636b6f;
     border-radius: 2px;
 }
+
+/* LOGO */
+#logo{
+    margin-top:-60px;
+}
